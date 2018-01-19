@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity
     String[] Peanut_Avoid = {"peanuts", "arachis oil","artificial nuts","beer nuts", "peanut oil", "goobers","ground nuts",
             "lupin","mandelonas", "mixed nuts", "monkey nuts", "nut meat", "nut pieces", "peanut butter", "peanut flour",
             "peanut protein hydrolysate", "fenugreek", "satay"};
+
+    String[] Gluten_Avoid = {"wheat","wheatberries", "durum","emmer","semolina","spelt","farina","farro","graham", "khorasan wheat",
+    "einkorn wheat","rye","barley", "Triticale", "malt","brewer’s yeast", "yeast","wheat starch", "graham","groat",
+    "teff","millet"};
+
     String ndbNum;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,18 +259,32 @@ public class MainActivity extends AppCompatActivity
         }
 
         boolean eat = true;
-        for(int i=0; i<Peanut_Avoid.length && eat == true; i++){
+        for(int i=0; i<Peanut_Avoid.length && eat; i++){
             if(List_Ingr.toLowerCase().contains(Peanut_Avoid[i])){
                 eat = false;
             }
         }
-        if(eat == true){
+        if(eat){
             barcodeResult.setText(barcodeResult.getText() + "\n\n" + "Ingredients:\n" + List_Ingr.toLowerCase() + "\n\n"
-            + "Peanut free!\n");
+            + "Peanut free: true\n");
         }
         else{
             barcodeResult.setText(barcodeResult.getText() + "\n\n" + "Ingredients:\n" + List_Ingr.toLowerCase() + "\n\n"
-                    + "You will die if you eat this!\n");
+                    + "Peanut free: false\n");
+        }
+
+
+        boolean gluten_free = true;
+        for(int i=0; i<Gluten_Avoid.length && gluten_free; i++){
+            if(List_Ingr.toLowerCase().contains(Gluten_Avoid[i])){
+                gluten_free = false;
+            }
+        }
+        if(gluten_free){
+            barcodeResult.setText(barcodeResult.getText() + "Gluten free: true\n");
+        }
+        else{
+            barcodeResult.setText(barcodeResult.getText() + "Gluten free: false\n");
         }
         //barcodeResult.setText(barcodeResult.getText() + "\n\n" + "Ingredients:\n" + List_Ingr.toLowerCase());
     }
