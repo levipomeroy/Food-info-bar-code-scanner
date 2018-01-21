@@ -63,12 +63,6 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-
-    public void scanBarcode(View v){
-        Intent intent = new Intent(this, ScanBarcodeActivity.class);
-        startActivityForResult(intent, 0);
-    }
-
     /**********************************************************************************************
      This function gets the barcode number from the ScanBarcodeActivity and displays it. It then calls
      the api to see if the code is contained in it.
